@@ -51,8 +51,9 @@ public class ContentFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        listenerButton = (OnClickListenerButton) getContext();
+        getActivity().getActionBar().setTitle("Режим обучения");
 
+        listenerButton = (OnClickListenerButton) getContext();
     }
 
     @OnClick(R.id.btn_card)

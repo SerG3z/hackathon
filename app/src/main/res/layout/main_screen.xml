@@ -11,12 +11,13 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
             android:src="@drawable/banner_img" />
 
         <Button
             android:id="@+id/btn_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/image"
@@ -25,78 +26,80 @@
         <Button
             android:id="@+id/btn_speech_word"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_card"
-            android:text="@string/text_card" />
+            android:text="ПРОГОВАРИВАНИЕ СЛОВ" />
 
         <Button
             android:id="@+id/btn_word_listing"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_speech_word"
-            android:text="@string/text_card" />
+            android:text="СЛОВО НА СЛУХ" />
 
         <Button
             android:id="@+id/btn_search_pair"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_word_listing"
-            android:text="@string/text_card" />
+            android:text="ПОИСК ПАРЫ" />
 
         <Button
             android:id="@+id/btn_construct_word"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_search_pair"
-            android:text="@string/text_card" />
+            android:text="@string/title_construct_word" />
 
         <Button
             android:id="@+id/btn_true_false"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_construct_word"
-            android:text="@string/text_card" />
+            android:text="ВЕРНО-НЕВЕРНО" />
 
         <Button
             android:id="@+id/btn_select_translate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_true_false"
-            android:text="@string/text_card" />
+            android:text="ВЫБОР ПЕРЕВОДА" />
 
         <Button
             android:id="@+id/btn_translate_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginLeft="@dimen/margin_left_right"
             android:layout_marginRight="@dimen/margin_left_right"
             android:layout_below="@id/btn_select_translate"
-            android:text="@string/text_card" />
+            android:text="ПЕРЕВОД ПО КАРТИНКЕ" />
 
 
         <include layout="@layout/speed_training"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_below="@id/btn_translate_image"
+            android:layout_marginTop="24dp"
             android:layout_marginLeft="61dp"
             android:layout_marginRight="60dp"
+            android:layout_marginBottom="26dp"
             android:id="@+id/include" />
 
         <include layout="@layout/speed_training"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:layout_marginTop="132dp"
             android:layout_marginLeft="61dp"
             android:layout_marginRight="60dp"
