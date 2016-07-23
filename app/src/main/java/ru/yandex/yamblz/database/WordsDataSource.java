@@ -77,15 +77,11 @@ public class WordsDataSource {
         return word;
     }
 
-    public List<Word> getWordByWordRu(String name) {
-        Cursor cursor = database.query(TABLE_WORDS, null, "word_ru = " + name, null, null, null, null);
-        List<Word> words = cursorToWords(cursor);
-        cursor.close();
-        return words;
-    }
-
-    public List<Word> getWordByWordEn(String name) {
-        Cursor cursor = database.query(TABLE_WORDS, null, "word_en = " + name, null, null, null, null);
+    public List<Word> getWordObjByWord(String name, String lang) {
+        String whereClause = "word_" + lang + " = ?";
+        String[] whereArgs = new String[] {name};
+        Cursor cursor = database.query(TABLE_WORDS, allColumns, whereClause, whereArgs, null, null, null);
+        cursor.moveToFirst();
         List<Word> words = cursorToWords(cursor);
         cursor.close();
         return words;
@@ -114,7 +110,7 @@ public class WordsDataSource {
 
     private Word cursorToWord(Cursor cursor) {
         return new Word(
-                cursor.getLong(0),
+                cursor.getInt(0),
                 cursor.getInt(1),
                 cursor.getString(2),
                 cursor.getString(3));
@@ -122,19 +118,14 @@ public class WordsDataSource {
 
     private List<Word> cursorToWords(Cursor cursor) {
         List<Word> words = new ArrayList<>();
-//        int count = 0;
-//        while (!cursor.isAfterLast()) {
+        while (!cursor.isAfterLast()) {
             words.add(new Word(
-                    cursor.getLong(0),
+                    cursor.getInt(0),
                     cursor.getInt(1),
                     cursor.getString(2),
                     cursor.getString(3)));
-//            count++;
-//            if (count > 200) {
-//                break;
-//            }
-//            cursor.moveToNext();
-//        }
+            cursor.moveToNext();
+        }
         return words;
     }
 }

@@ -6,12 +6,12 @@ package ru.yandex.yamblz.model;
 
 public class Word {
 
-    private long id;
+    private int id;
     private int count;
     private String word_ru;
     private String word_en;
 
-    public Word(long id, int count, String word_ru, String word_en) {
+    public Word(int id, int count, String word_ru, String word_en) {
         this.id = id;
         this.count = count;
         this.word_ru = word_ru;

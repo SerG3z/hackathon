@@ -19,7 +19,7 @@ import ru.yandex.yamblz.model.Word;
 
 public class CardFragment extends Fragment {
 
-    private WordsDataSource wordsDataSource = null;
+    private WordsDataSource wordsDataSource;
 
     public static CardFragment newInstance() {
 
@@ -41,8 +41,12 @@ public class CardFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        for (Word word:wordsDataSource.getWordByWordEn("сюрприз")){
+        wordsDataSource = new WordsDataSource(getContext());
+        wordsDataSource.open();
+        Log.d("onViewCreated: ", "zxc");
+        for (Word word:wordsDataSource.getWordObjByWord("start", "en")){
             Log.d("onViewCreated: ", word.getWord_en() + " " + word.getWord_ru());
         }
+        wordsDataSource.close();
     }
 }

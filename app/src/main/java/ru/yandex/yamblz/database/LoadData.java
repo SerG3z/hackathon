@@ -29,37 +29,32 @@ public class LoadData extends AsyncTask<Context, Void, Void> {
     @Override
     protected Void doInBackground(Context... params) {
 
-//        wordsDataSource.deleteBase();
         wordsDataSource = new WordsDataSource(params[0]);
         wordsDataSource.open();
-
         JSONArray english = LoadDatabaseFromJson(params[0], R.raw.words, "en");
         writeToBasedata(english, "en-ru");
         JSONArray russian = LoadDatabaseFromJson(params[0], R.raw.words, "ru");
         writeToBasedata(russian, "ru-en");
         wordsDataSource.close();
-
-
-        Log.d("doInBackground: ", wordsDataSource.toString());
-        for (Word word:wordsDataSource.getWordByWordRu("сюрприз")){
-            Log.d("onViewCreated: ", word.getWord_en() + " " + word.getWord_ru());
-        }
-        for (Word word:wordsDataSource.getWordByWordEn("сюрприз")){
-            Log.d("onViewCreated: ", word.getWord_en() + " " + word.getWord_ru());
-        }
         return null;
     }
 
     private void writeToBasedata(JSONArray array, String direction) {
         for (int i = 0; i < array.length(); i++) {
             try {
-                String wordEn = array.getString(i);
-                String wordRu = translateWord(wordEn, direction);
                 if (direction.equals("en-ru")) {
-                    wordsDataSource.createWord(0, wordRu, wordEn);
+                    String wordEn = array.getString(i);
+                    if (wordsDataSource.getWordObjByWord(wordEn, "en").size() == 0) {
+                        String wordRu = translateWord(wordEn, direction);
+                        wordsDataSource.createWord(0, wordRu, wordEn);
+                    }
                 }
-                if (direction.equals("ru-en")) {
-                    wordsDataSource.createWord(0, wordEn, wordRu);
+                else if (direction.equals("ru-en")) {
+                    String wordRu = array.getString(i);
+                    if (wordsDataSource.getWordObjByWord(wordRu, "ru").size() == 0) {
+                        String wordEn = translateWord(wordRu, direction);
+                        wordsDataSource.createWord(0, wordRu, wordEn);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

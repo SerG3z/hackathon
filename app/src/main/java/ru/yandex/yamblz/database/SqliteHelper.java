@@ -26,7 +26,7 @@ public class SqliteHelper extends SQLiteOpenHelper {
     }
 
     public SqliteHelper(Context context) {
-        super(context, TABLE_WORDS, null, 3);
+        super(context, TABLE_WORDS, null, 5);
     }
 
 
