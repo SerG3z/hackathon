@@ -3,12 +3,27 @@ package ru.yandex.yamblz.ui.activities;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ru.yandex.yamblz.App;
 import ru.yandex.yamblz.R;
+import ru.yandex.yamblz.database.LoadData;
 import ru.yandex.yamblz.developer_settings.DeveloperSettingsModule;
 import ru.yandex.yamblz.ui.fragments.CardFragment;
 import ru.yandex.yamblz.ui.fragments.ContentFragment;
@@ -32,6 +47,14 @@ public class MainActivity extends BaseActivity implements ContentFragment.OnClic
                     .beginTransaction()
                     .replace(R.id.main_frame_layout, new ContentFragment())
                     .commit();
+        }
+
+        LoadData loadData = new LoadData();
+        loadData.execute(getApplicationContext());
+        try {
+            loadData.get();
+        } catch (InterruptedException | ExecutionException e) {
+            Log.d("asd", "asd");
         }
     }
 
