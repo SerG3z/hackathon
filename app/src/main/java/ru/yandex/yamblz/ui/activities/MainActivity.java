@@ -26,6 +26,7 @@ import ru.yandex.yamblz.R;
 import ru.yandex.yamblz.database.LoadData;
 import ru.yandex.yamblz.developer_settings.DeveloperSettingsModule;
 import ru.yandex.yamblz.ui.fragments.CardFragment;
+import ru.yandex.yamblz.ui.fragments.ConstructWordFragment;
 import ru.yandex.yamblz.ui.fragments.ContentFragment;
 import ru.yandex.yamblz.ui.other.ViewModifier;
 
@@ -73,6 +74,12 @@ public class MainActivity extends BaseActivity implements ContentFragment.OnClic
                         .commit();
                 break;
             case R.id.btn_construct_word:
+                ConstructWordFragment constructWordFragment = ConstructWordFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_frame_layout, constructWordFragment)
+                        .addToBackStack(null)
+                        .commit();
                 break;
             case R.id.btn_search_pair:
                 break;
