@@ -10,10 +10,11 @@ import javax.inject.Named;
 import ru.yandex.yamblz.App;
 import ru.yandex.yamblz.R;
 import ru.yandex.yamblz.developer_settings.DeveloperSettingsModule;
+import ru.yandex.yamblz.ui.fragments.CardFragment;
 import ru.yandex.yamblz.ui.fragments.ContentFragment;
 import ru.yandex.yamblz.ui.other.ViewModifier;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ContentFragment.OnClickListenerButton{
 
     @Inject @Named(DeveloperSettingsModule.MAIN_ACTIVITY_VIEW_MODIFIER)
     ViewModifier viewModifier;
@@ -31,6 +32,37 @@ public class MainActivity extends BaseActivity {
                     .beginTransaction()
                     .replace(R.id.main_frame_layout, new ContentFragment())
                     .commit();
+        }
+    }
+
+
+    @Override
+    public void onClickButton(int indexButton) {
+        switch (indexButton) {
+            case R.id.btn_speed_training:
+                break;
+            case R.id.btn_card:
+                CardFragment cardFragment = CardFragment.newInstance();
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.main_frame_layout, cardFragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+            case R.id.btn_construct_word:
+                break;
+            case R.id.btn_search_pair:
+                break;
+            case R.id.btn_select_translate:
+                break;
+            case R.id.btn_speech_word:
+                break;
+            case R.id.btn_translate_image:
+                break;
+            case R.id.btn_true_false:
+                break;
+            case R.id.btn_word_listing:
+                break;
         }
     }
 }
