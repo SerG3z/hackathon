@@ -3,7 +3,5 @@
     android:id="@+id/btn_speed_training"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:text="@string/text_card"
-    >
-
+    android:text="@string/text_card">
 </Button>
