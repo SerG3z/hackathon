@@ -6,6 +6,7 @@ package ru.yandex.yamblz.model;
 
 public class Word {
 
+    // Для уверенности ставьте по дефолту final
     private int id;
     private int count;
     private String word_ru;

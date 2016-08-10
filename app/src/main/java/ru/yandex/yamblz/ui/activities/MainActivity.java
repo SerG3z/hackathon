@@ -2,6 +2,7 @@ package ru.yandex.yamblz.ui.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -50,9 +51,11 @@ public class MainActivity extends BaseActivity implements ContentFragment.OnClic
                     .commit();
         }
 
+        // От утечки активити вы спасли, но ведь application тоже не вечен
         LoadData loadData = new LoadData();
         loadData.execute(getApplicationContext());
         try {
+            // А здесь главный поток блокируется. Вызов аналогичен Future#get. Так делать нельзя
             loadData.get();
         } catch (InterruptedException | ExecutionException e) {
             Log.d("asd", "asd");

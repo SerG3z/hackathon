@@ -57,6 +57,8 @@ public class LoadData extends AsyncTask<Context, Void, Void> {
                     }
                 }
             } catch (JSONException e) {
+                // Не бойтесь бросать RuntimeException. Пускай оно лучше упадет, чем случится
+                // неясное состояние, которое надо будет обрабатывать.
                 e.printStackTrace();
             }
         }
@@ -97,11 +99,12 @@ public class LoadData extends AsyncTask<Context, Void, Void> {
                 System.out.println("POST request not worked");
             }
         } catch(Exception e) {
-
+            // Пропускать исключения вообще запрещено :)
         }
         return translatedWord;
     }
 
+    // Методы следует обзывать в lowerCamelCase
     private JSONArray LoadDatabaseFromJson(Context context, int id, String lang) {
         InputStream inputStream = context.getResources().openRawResource(id);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

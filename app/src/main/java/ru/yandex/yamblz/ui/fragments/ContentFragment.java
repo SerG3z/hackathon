@@ -51,44 +51,50 @@ public class ContentFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Кастовать лучше в onAttach то, что туда приходить, а в onDetach обнулять ссылку (иначе будет утечка)
         listenerButton = (OnClickListenerButton) getContext();
     }
 
-    @OnClick(R.id.btn_card)
-    void onClickCard() {
-        listenerButton.onClickButton(R.id.btn_card);
-    }
-    @OnClick(R.id.btn_construct_word)
-    void onClickConstruct() {
-        listenerButton.onClickButton(R.id.btn_construct_word);
-    }
-    @OnClick(R.id.btn_search_pair)
-    void onClickSearch() {
-        listenerButton.onClickButton(R.id.btn_search_pair);
-    }
-    @OnClick(R.id.btn_select_translate)
-    void onClickSelect() {
-        listenerButton.onClickButton(R.id.btn_select_translate);
-    }
-    @OnClick(R.id.btn_speech_word)
-    void onClickSpeech() {
-        listenerButton.onClickButton(R.id.btn_speech_word);
-    }
-    @OnClick(R.id.btn_translate_image)
-    void onClickTranslate() {
-        listenerButton.onClickButton(R.id.btn_translate_image);
-    }
-    @OnClick(R.id.btn_true_false)
-    void onClickTrue() {
-        listenerButton.onClickButton(R.id.btn_true_false);
-    }
-    @OnClick(R.id.btn_word_listing)
-    void onClickWord() {
-        listenerButton.onClickButton(R.id.btn_word_listing);
-    }
-    @OnClick(R.id.btn_speed_training)
-    void onClickSpeed() {
-        listenerButton.onClickButton(R.id.btn_speed_training);
-    }
+//    @OnClick(R.id.btn_card)
+//    void onClickCard() {
+//        listenerButton.onClickButton(R.id.btn_card);
+//    }
+//    @OnClick(R.id.btn_construct_word)
+//    void onClickConstruct() {
+//        listenerButton.onClickButton(R.id.btn_construct_word);
+//    }
+//    @OnClick(R.id.btn_search_pair)
+//    void onClickSearch() {
+//        listenerButton.onClickButton(R.id.btn_search_pair);
+//    }
+//    @OnClick(R.id.btn_select_translate)
+//    void onClickSelect() {
+//        listenerButton.onClickButton(R.id.btn_select_translate);
+//    }
+//    @OnClick(R.id.btn_speech_word)
+//    void onClickSpeech() {
+//        listenerButton.onClickButton(R.id.btn_speech_word);
+//    }
+//    @OnClick(R.id.btn_translate_image)
+//    void onClickTranslate() {
+//        listenerButton.onClickButton(R.id.btn_translate_image);
+//    }
+//    @OnClick(R.id.btn_true_false)
+//    void onClickTrue() {
+//        listenerButton.onClickButton(R.id.btn_true_false);
+//    }
+//    @OnClick(R.id.btn_word_listing)
+//    void onClickWord() {
+//        listenerButton.onClickButton(R.id.btn_word_listing);
+//    }
+//    @OnClick(R.id.btn_speed_training)
+//    void onClickSpeed() {
+//        listenerButton.onClickButton(R.id.btn_speed_training);
+//    }
 
+    // А еще так можно
+    @OnClick({ R.id.btn_card, R.id.btn_construct_word/*, ...*/})
+    void onClickButton(View view) {
+        listenerButton.onClickButton(view.getId());
+    }
 }
