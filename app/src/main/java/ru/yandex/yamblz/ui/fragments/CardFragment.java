@@ -16,7 +16,9 @@ import ru.yandex.yamblz.model.Word;
 /**
  * Created by user on 23.07.16.
  */
-
+// Вам же дали BaseFragment, обратите внимание, что там есть как bind, так и unbind. Вспомните лекцию по фрагментам, зачем
+// это нужно (спойлер: чтобы не утекали вьюхи, когда фрагмент лежит во FragmentManager после того, как у него вызвался
+// onDestroyView)
 public class CardFragment extends Fragment {
 
     private WordsDataSource wordsDataSource;

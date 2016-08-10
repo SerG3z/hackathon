@@ -35,6 +35,7 @@ public class WordsDataSource {
             WORD_EN };
 
     public WordsDataSource(Context context) {
+        // Helper не имеет смысл инстанциировать каждый раз, достаточно одного раза.
         dbHelper = new SqliteHelper(context);
     }
 
@@ -43,9 +44,14 @@ public class WordsDataSource {
     }
 
     public void close() {
+        // Тут вы базу закрываете, но ссылка на базу все равно остается в этом классе.
+        // Лучше вообще инстант базы не сохранять нигде в поле (хелпер. однако, можно) и получать
+        // базу (как writable, так и readable) в каждый момент, когда надо выполнить над ней действия,
+        // и в конце блока его забывать (то есть объявлять просто локальной переменной)
         dbHelper.close();
     }
 
+    // Переменные в Java в snake_case обычно не обзываются. Посмотрите хотя бы https://google.github.io/styleguide/javaguide.html
     public Word createWord(int count, String word_ru, String word_en) {
         ContentValues values = new ContentValues();
         values.put(WORD_COUNT, count);
@@ -110,6 +116,9 @@ public class WordsDataSource {
 
     private Word cursorToWord(Cursor cursor) {
         return new Word(
+                // Очень ненадежно оперировать индексами. Здесь вы ничего не знаете о том, что это за колонка
+                // Подобное лучше прятать в классе, который единственный знает, какая схема - проще будет поддерживать.
+                // Там же и остальная работа, завязанная на схему.
                 cursor.getInt(0),
                 cursor.getInt(1),
                 cursor.getString(2),
